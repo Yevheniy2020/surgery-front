@@ -1,0 +1,78 @@
+.button {
+  font-size: 16px;
+  padding: 6px 8px;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Button Add  */
+
+.button-add {
+  background-color: green;
+}
+
+.button-add:hover {
+  background-color: darkgreen;
+}
+
+.button-add:active {
+  background-color: green;
+}
+
+/* Button Edit */
+
+.button-edit {
+  background-color: #007bff;
+}
+
+.button-edit:hover {
+  background-color: #0056b3;
+}
+
+.button-edit:active {
+  background-color: #004085;
+}
+
+/* Button Delete */
+
+.button-delete {
+  background-color: red;
+}
+
+.button-delete:hover {
+  background-color: #b22222;
+}
+
+.button-delete:active {
+  background-color: red;
+}
+
+/* Button View */
+
+.button-view {
+  background-color: violet;
+}
+
+.button-view:hover {
+  background-color: darkviolet;
+}
+
+.button-view:active {
+  background-color: violet;
+}
