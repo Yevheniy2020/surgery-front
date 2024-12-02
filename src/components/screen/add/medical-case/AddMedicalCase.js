@@ -1,9 +1,9 @@
 import React from "react";
-import Button from "../../../common/Button/Button";
-import Input from "../../../common/Input/Input";
+import Button from "../../../common/button/Button";
+import Input from "../../../common/input/Input";
 import styles from "./AddMedicalCase.module.css";
-import { variants } from "../../../common/Button/Button";
-import DateTimePicker from "../../../common/DateTimePicker/DateTimePicker";
+import { variants } from "../../../common/button/Button";
+import DateTimePicker from "../../../common/date-time-picker/DateTimePicker";
 import { useState } from "react";
 import MedicalCaseApi from "../../../../api/medical-case/MedicalCaseAPI";
 

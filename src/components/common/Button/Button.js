@@ -5,6 +5,7 @@ export const variants = {
   edit: "button-edit",
   delete: "button-delete",
   view: "button-view",
+  nav: "button-nav",
 };
 
 const Button = ({ children = "Click", variant = variants.add, onClick }) => {

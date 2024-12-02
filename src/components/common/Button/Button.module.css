@@ -1,7 +1,23 @@
+:root {
+  --color-white: #ffffff;
+  --color-disabled: #cccccc;
+  --color-add: green;
+  --color-add-hover: darkgreen;
+  --color-edit: #007bff;
+  --color-edit-hover: #0056b3;
+  --color-edit-active: #004085;
+  --color-delete: red;
+  --color-delete-hover: #b22222;
+  --color-view: violet;
+  --color-view-hover: darkviolet;
+  --color-nav: black;
+  --color-nav-hover: rgb(70, 70, 70);
+}
+
 .button {
   font-size: 16px;
   padding: 6px 8px;
-  color: #ffffff;
+  color: var(--color-white);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -17,62 +33,76 @@
 }
 
 .button:disabled {
-  background-color: #cccccc;
+  background-color: var(--color-disabled);
   cursor: not-allowed;
 }
 
 /* Button Add  */
 
 .button-add {
-  background-color: green;
+  background-color: var(--color-add);
 }
 
 .button-add:hover {
-  background-color: darkgreen;
+  background-color: var(--color-add-hover);
 }
 
 .button-add:active {
-  background-color: green;
+  background-color: var(--color-add);
 }
 
 /* Button Edit */
 
 .button-edit {
-  background-color: #007bff;
+  background-color: var(--color-edit);
 }
 
 .button-edit:hover {
-  background-color: #0056b3;
+  background-color: var(--color-edit-hover);
 }
 
 .button-edit:active {
-  background-color: #004085;
+  background-color: var(--color-edit-active);
 }
 
 /* Button Delete */
 
 .button-delete {
-  background-color: red;
+  background-color: var(--color-delete);
 }
 
 .button-delete:hover {
-  background-color: #b22222;
+  background-color: var(--color-delete-hover);
 }
 
 .button-delete:active {
-  background-color: red;
+  background-color: var(--color-delete);
 }
 
 /* Button View */
 
 .button-view {
-  background-color: violet;
+  background-color: var(--color-view);
 }
 
 .button-view:hover {
-  background-color: darkviolet;
+  background-color: var(--color-view-hover);
 }
 
 .button-view:active {
-  background-color: violet;
+  background-color: var(--color-view);
+}
+
+/* Button Nav */
+
+.button-nav {
+  background-color: var(--color-nav);
+}
+
+.button-nav:hover {
+  background-color: var(--color-nav-hover);
+}
+
+.button-nav:active {
+  background-color: var(--color-nav);
 }

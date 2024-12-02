@@ -1,7 +1,5 @@
 import React from "react";
-import Button from "../../components/common/Button/Button";
-import { useParams } from "react-router-dom";
-import ViewMedicalCase from "../../components/screen/view/ViewMedicalCase";
+import ViewMedicalCase from "../../components/screen/view/medica-case/ViewMedicalCase";
 
 const ViewMedicalCasePage = () => {
   return <ViewMedicalCase />;

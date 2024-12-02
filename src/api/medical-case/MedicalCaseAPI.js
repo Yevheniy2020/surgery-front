@@ -1,22 +1,33 @@
 import { client } from "../instance";
-
 class MedicalCaseApi {
   async getAllMedicalCases() {
     const { data } = await client.get("/MedicalCase/GetAll", {});
     return data;
   }
 
-  // {
-  //   "caseStartDate": "2023-12-01T00:00:00Z",
-  //   "caseEndDate": null,
-  //   "patientId": 1,
-  //   "insuranceId": 2,
-  //   "diagnoseId": 3,
-  //   "details": "string"
-  // }
+  async getMedicalCaseById(id) {
+    const { data } = await client.get("/MedicalCase/GetById", {
+      params: { id },
+    });
+    return data;
+  }
 
   async addMedicalCase(medicalCase) {
     const { data } = await client.post("/MedicalCase/add", medicalCase);
+    return data;
+  }
+
+  async deleteMedicalCase(id) {
+    const { data } = await client.delete("/MedicalCase/Delete", {
+      params: { id },
+    });
+    return data;
+  }
+
+  async updateMedicalCase(medicalCase) {
+    const { data } = await client.put("/MedicalCase/Update", medicalCase, {
+      params: { id: medicalCase.id },
+    });
     return data;
   }
 }
