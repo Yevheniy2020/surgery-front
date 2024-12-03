@@ -1,4 +1,4 @@
-import { client } from "../instance";
+import { client } from "./instance";
 
 class DoctorApi {
   async getAllDoctors() {

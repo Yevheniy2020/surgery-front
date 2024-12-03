@@ -1,4 +1,4 @@
-import { client } from "../instance";
+import { client } from "./instance";
 class ResearchApi {
   async getAllResearch() {
     const { data } = await client.get("/Research/GetAll", {});

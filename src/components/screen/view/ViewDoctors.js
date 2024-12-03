@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import DoctorApi from "api/doctor/DoctorAPI";
-import Table from "components/common/tables/medical-case-table/Table";
-import Button, { variants } from "components/common/button/Button";
+import DoctorApi from "../../../api/DoctorAPI";
+import Table from "../../table/Table";
+import Button, { variants } from "../../button/Button";
 import { useNavigate } from "react-router-dom";
 
 const ViewDoctors = () => {

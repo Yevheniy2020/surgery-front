@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import Button, { variants } from "components/common/button/Button";
+import Button, { variants } from "../button/Button";
 import styles from "./Main.module.css";
 
 const mainNavigation = [

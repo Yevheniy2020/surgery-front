@@ -1,9 +1,9 @@
 import React from "react";
-import { variants } from "components/common/button/Button";
-import styles from "../Table.module.css";
-import Button from "components/common/button/Button";
+import { variants } from "../button/Button";
+import styles from "./Table.module.css";
+import Button from "../button/Button";
 import { useNavigate } from "react-router-dom";
-import MedicalCaseApi from "api/medical-case/MedicalCaseAPI";
+import MedicalCaseApi from "../../api/MedicalCaseAPI";
 const Table = ({ data }) => {
   const navigate = useNavigate();
 

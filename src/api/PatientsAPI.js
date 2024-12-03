@@ -1,4 +1,4 @@
-import { client } from "../instance";
+import { client } from "./instance";
 class PatientsApi {
   async getAllPatients() {
     const { data } = await client.get("/Patient/GetAll", {});

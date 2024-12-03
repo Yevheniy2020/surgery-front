@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Button, { variants } from "components/common/button/Button";
-import Table from "components/common/tables/medical-case-table/Table";
-import MedicalCaseApi from "api/medical-case/MedicalCaseAPI";
-const ViewMedicalCase = () => {
+import Table from "../../table/Table"; // Updated to use diagnoses-table
+import Button, { variants } from "../../button/Button";
+import { useNavigate } from "react-router-dom";
+import DiagnosesApi from "../../../api/DiagnosesAPI";
+const ViewDiagnoses = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -19,24 +19,26 @@ const ViewMedicalCase = () => {
   const fetchDiagnosesData = async () => {
     setLoading(true);
     try {
-      const fetchedData = await MedicalCaseApi.getAllMedicalCases();
-      const transformedData = fetchedData.map(
-        ({ caseStartDate, caseEndDate, ...rest }) => ({
-          ...rest,
-          caseStartDate: new Date(caseStartDate).toLocaleString(),
-          caseEndDate: caseEndDate
-            ? new Date(caseEndDate).toLocaleString()
-            : null,
-        })
-      );
-      setData(transformedData);
+      const fetchedData = await DiagnosesApi.getAllDiagnoses();
+      fetchedData.forEach((element) => {
+        if (element.medicalCases.length !== 0) {
+          element.medicalCasesId = element.medicalCases
+            .map((item) => item.caseId)
+            .join(", ");
+        } else {
+          element.medicalCasesId = null;
+        }
+      });
+      const filteredData = fetchedData.map(({ medicalCases, ...rest }) => rest);
+      setData(filteredData);
       console.log(fetchedData);
     } catch (error) {
-      console.error("Error fetching diagnosis data:", error);
+      console.error("Error fetching diagnoses data:", error);
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <div>
       {loading ? (
@@ -46,7 +48,7 @@ const ViewMedicalCase = () => {
           <Table data={data} />
           <div className="buttons-bottom">
             <Button onClick={() => handleRedirect("/add/diagnosis")}>
-              Add New
+              Add New Diagnosis
             </Button>
             <Button variant={variants.nav} onClick={() => handleRedirect("/")}>
               To Main
@@ -58,4 +60,4 @@ const ViewMedicalCase = () => {
   );
 };
 
-export default ViewMedicalCase;
+export default ViewDiagnoses;

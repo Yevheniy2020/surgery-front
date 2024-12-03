@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "./DateTimePicker.css"; // Assuming you have a CSS file for styling
+import "./DateTimePicker.css";
 
 const DateTimePicker = ({ label, onChange }) => {
   const [dateTime, setDateTime] = useState("");
