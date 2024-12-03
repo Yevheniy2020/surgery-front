@@ -17,6 +17,10 @@ const ViewInsurance = () => {
     navigate(`${path}`);
   };
 
+  const handleEdit = (id) => {
+    navigate(`/edit/insurance/${id.insuranceId}`);
+  };
+
   const handleDelete = async (id) => {
     try {
       await InsuranceApi.deleteInsurance(id.insuranceId);
@@ -55,7 +59,11 @@ const ViewInsurance = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <Table data={data} handleDelete={handleDelete} />
+          <Table
+            data={data}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
           <div className="buttons-bottom">
             <Button onClick={() => handleRedirect("/add/insurance")}>
               Add New Insurance

@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./DateTimePicker.css";
 
-const DateTimePicker = ({ label, onChange }) => {
-  const [dateTime, setDateTime] = useState("");
+const DateTimePicker = ({ label, value, onChange }) => {
+  const [dateTime, setDateTime] = useState(value);
+
+  useEffect(() => {
+    setDateTime(value);
+  }, [value]);
 
   const handleChange = (event) => {
     setDateTime(event.target.value);
@@ -20,6 +24,7 @@ const DateTimePicker = ({ label, onChange }) => {
 
 DateTimePicker.propTypes = {
   label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

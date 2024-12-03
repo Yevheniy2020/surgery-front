@@ -17,6 +17,10 @@ const ViewOperations = () => {
     navigate(`${path}`);
   };
 
+  const handleEdit = (id) => {
+    navigate(`/edit/operations/${id.operationId}`);
+  };
+
   const handleDelete = async (id) => {
     try {
       await OperationsApi.deleteOperation(id.operationId);
@@ -46,7 +50,11 @@ const ViewOperations = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <Table data={data} handleDelete={handleDelete} />
+          <Table
+            data={data}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
           <div className="buttons-bottom">
             <Button onClick={() => handleRedirect("/add/operations")}>
               {" "}

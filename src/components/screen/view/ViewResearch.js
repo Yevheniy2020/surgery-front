@@ -23,6 +23,10 @@ const ViewResearch = () => {
     }
   };
 
+  const handleEdit = (id) => {
+    navigate(`/edit/research/${id.researchId}`);
+  };
+
   const handleRedirect = (path) => {
     navigate(`${path}`);
   };
@@ -46,7 +50,11 @@ const ViewResearch = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <Table data={data} handleDelete={handleDelete} />
+          <Table
+            data={data}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
           <div className="buttons-bottom">
             <Button onClick={() => handleRedirect("/add/research")}>
               Add New Research

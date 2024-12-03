@@ -2,14 +2,7 @@ import React from "react";
 import { variants } from "../button/Button";
 import styles from "./Table.module.css";
 import Button from "../button/Button";
-import { useNavigate } from "react-router-dom";
-const Table = ({ data, pathEdit, handleDelete }) => {
-  const navigate = useNavigate();
-
-  const handleRedirect = (path, params) => {
-    navigate(`${path}/${params}`);
-  };
-
+const Table = ({ data, pathEdit, handleDelete, handleEdit }) => {
   return (
     <table className={styles.table}>
       <thead>
@@ -29,7 +22,7 @@ const Table = ({ data, pathEdit, handleDelete }) => {
               <div className={styles.actions}>
                 <Button
                   variant={variants.edit}
-                  onClick={() => handleRedirect(pathEdit, item)}
+                  onClick={() => handleEdit(item)}
                 >
                   Edit
                 </Button>

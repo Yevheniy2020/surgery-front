@@ -3,10 +3,15 @@ import React, { useEffect, useState } from "react";
 import Button, { variants } from "../../button/Button";
 import Table from "../../table/Table";
 import MedicalCaseApi from "../../../api/MedicalCaseAPI";
+
 const ViewMedicalCase = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const handleEdit = (id) => {
+    navigate(`/edit/medical-cases/${id.caseId}`);
+  };
 
   useEffect(() => {
     fetchDiagnosesData();
@@ -47,6 +52,7 @@ const ViewMedicalCase = () => {
       setLoading(false);
     }
   };
+
   return (
     <div>
       {loading ? (
@@ -55,9 +61,8 @@ const ViewMedicalCase = () => {
         <>
           <Table
             data={data}
-            pathEdit="/edit/medical-cases"
             handleDelete={handleDelete}
-            speficifId="caseId"
+            handleEdit={handleEdit}
           />
           <div className="buttons-bottom">
             <Button onClick={() => handleRedirect("/add/medical-cases")}>

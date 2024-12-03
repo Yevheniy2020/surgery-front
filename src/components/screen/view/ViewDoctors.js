@@ -17,13 +17,17 @@ const ViewDoctors = () => {
     navigate(`${path}`);
   };
 
+  const handleEdit = (id) => {
+    navigate(`/edit/doctors/${id.doctorId}`);
+  };
+
   const handleDelete = async (id) => {
     try {
       await DoctorApi.deleteDoctor(id.doctorId);
-      console.log(`Deleted medical case with id: ${id.doctorId}`);
+      console.log(`Deleted doctor with id: ${id.doctorId}`);
       window.location.reload();
     } catch (error) {
-      console.error("Error deleting medical case:", error);
+      console.error("Error deleting doctor:", error);
     }
   };
 
@@ -46,7 +50,11 @@ const ViewDoctors = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <Table data={data} handleDelete={handleDelete} />
+          <Table
+            data={data}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
           <div className="buttons-bottom">
             <Button onClick={() => handleRedirect("/add/doctors")}>
               Add New Doctor

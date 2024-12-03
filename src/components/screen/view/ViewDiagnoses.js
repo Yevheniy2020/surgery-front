@@ -3,6 +3,7 @@ import Table from "../../table/Table"; // Updated to use diagnoses-table
 import Button, { variants } from "../../button/Button";
 import { useNavigate } from "react-router-dom";
 import DiagnosesApi from "../../../api/DiagnosesAPI";
+
 const ViewDiagnoses = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,6 +15,10 @@ const ViewDiagnoses = () => {
 
   const handleRedirect = (path) => {
     navigate(`${path}`);
+  };
+
+  const handleEdit = (id) => {
+    navigate(`/edit/diagnoses/${id.diagnoseId}`);
   };
 
   const handleDelete = async (id) => {
@@ -55,7 +60,11 @@ const ViewDiagnoses = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <Table data={data} handleDelete={handleDelete} />
+          <Table
+            data={data}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
           <div className="buttons-bottom">
             <Button onClick={() => handleRedirect("/add/diagnoses")}>
               Add New Diagnosis

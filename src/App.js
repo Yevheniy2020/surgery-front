@@ -16,6 +16,13 @@ import AddDoctor from "./components/screen/add/AddDoctor";
 import AddInsurance from "./components/screen/add/AddInsurance";
 import AddOperations from "./components/screen/add/AddOperations";
 import AddResearch from "./components/screen/add/AddResearch";
+// --- Edit
+import EditMedicalCase from "./components/screen/edit/EditMedicalCase";
+import EditDiagnosis from "./components/screen/edit/EditDiagnosis";
+import EditDoctor from "./components/screen/edit/EditDoctor";
+import EditInsurance from "./components/screen/edit/EditInsurance";
+import EditOperations from "./components/screen/edit/EditOperations";
+import EditResearch from "./components/screen/edit/EditResearch";
 
 function App() {
   return (
@@ -36,6 +43,13 @@ function App() {
         <Route path="/add/insurance" element={<AddInsurance />} />
         <Route path="/add/operations" element={<AddOperations />} />
         <Route path="/add/research" element={<AddResearch />} />
+        {/* EDIT */}
+        <Route path="/edit/medical-cases/:id" element={<EditMedicalCase />} />
+        <Route path="/edit/diagnoses/:id" element={<EditDiagnosis />} />
+        <Route path="/edit/doctors/:id" element={<EditDoctor />} />
+        <Route path="/edit/insurance/:id" element={<EditInsurance />} />
+        <Route path="/edit/operations/:id" element={<EditOperations />} />
+        <Route path="/edit/research/:id" element={<EditResearch />} />
       </Routes>
     </Router>
   );
