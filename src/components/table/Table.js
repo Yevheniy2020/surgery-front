@@ -3,21 +3,11 @@ import { variants } from "../button/Button";
 import styles from "./Table.module.css";
 import Button from "../button/Button";
 import { useNavigate } from "react-router-dom";
-import MedicalCaseApi from "../../api/MedicalCaseAPI";
-const Table = ({ data }) => {
+const Table = ({ data, pathEdit, handleDelete }) => {
   const navigate = useNavigate();
 
   const handleRedirect = (path, params) => {
     navigate(`${path}/${params}`);
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      await MedicalCaseApi.deleteMedicalCase(id);
-      console.log(`Deleted medical case with id: ${id}`);
-    } catch (error) {
-      console.error("Error deleting medical case:", error);
-    }
   };
 
   return (
@@ -37,21 +27,15 @@ const Table = ({ data }) => {
             ))}
             <td>
               <div className={styles.actions}>
-                {/* <Button
-                  variant={variants.view}
-                  onClick={() => handleRedirect("/view", item.caseId)}
-                >
-                  View
-                </Button> */}
                 <Button
                   variant={variants.edit}
-                  onClick={() => handleRedirect("/view", item.caseId)}
+                  onClick={() => handleRedirect(pathEdit, item)}
                 >
                   Edit
                 </Button>
                 <Button
                   variant={variants.delete}
-                  onClick={() => handleDelete(item.caseId)}
+                  onClick={() => handleDelete(item)}
                 >
                   Delete
                 </Button>

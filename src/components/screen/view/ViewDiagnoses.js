@@ -16,6 +16,16 @@ const ViewDiagnoses = () => {
     navigate(`${path}`);
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await DiagnosesApi.deleteDiagnosis(id.diagnoseId);
+      console.log(`Deleted medical case with id: ${id.diagnoseId}`);
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting medical case:", error);
+    }
+  };
+
   const fetchDiagnosesData = async () => {
     setLoading(true);
     try {
@@ -45,9 +55,9 @@ const ViewDiagnoses = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <Table data={data} />
+          <Table data={data} handleDelete={handleDelete} />
           <div className="buttons-bottom">
-            <Button onClick={() => handleRedirect("/add/diagnosis")}>
+            <Button onClick={() => handleRedirect("/add/diagnoses")}>
               Add New Diagnosis
             </Button>
             <Button variant={variants.nav} onClick={() => handleRedirect("/")}>

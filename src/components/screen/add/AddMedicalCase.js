@@ -1,11 +1,11 @@
 import React from "react";
 import Button from "../../button/Button";
 import Input from "../../input/Input";
-import styles from "./AddMedicalCase.module.css";
+import styles from "./AddStyles.module.css";
 import { variants } from "../../button/Button";
 import DateTimePicker from "../../date-time-picker/DateTimePicker";
 import { useState } from "react";
-import MedicalCaseApi from "../../../api/medical-case/MedicalCaseAPI";
+import MedicalCaseApi from "../../../api/MedicalCaseAPI";
 
 const AddMedicalCase = () => {
   const [caseStartDate, setCaseStartDate] = useState("");
@@ -13,7 +13,6 @@ const AddMedicalCase = () => {
   const [patientId, setPatientId] = useState("");
   const [insuranceId, setInsuranceId] = useState("");
   const [diagnosisId, setDiagnosisId] = useState("");
-  const [details, setDetails] = useState("");
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -38,7 +37,6 @@ const AddMedicalCase = () => {
     if (!patientId) newErrors.patientId = "Patient ID is required.";
     if (!insuranceId) newErrors.insuranceId = "Insurance ID is required.";
     if (!diagnosisId) newErrors.diagnosisId = "Diagnosis ID is required.";
-    if (!details) newErrors.details = "Details are required.";
     if (caseEndDate < caseStartDate)
       newErrors.dateRange = "End date must be after start date.";
 
@@ -54,7 +52,6 @@ const AddMedicalCase = () => {
         patientId,
         insuranceId,
         diagnosisId,
-        details,
       };
       try {
         const response = await MedicalCaseApi.addMedicalCase(selectedData);
@@ -111,12 +108,6 @@ const AddMedicalCase = () => {
       {errors.diagnosisId && (
         <p className={styles.error}>{errors.diagnosisId}</p>
       )}
-      <Input
-        label="Details"
-        value={details}
-        onChange={handleInputChange(setDetails)}
-      />
-      {errors.details && <p className={styles.error}>{errors.details}</p>}
       {errors.dateRange && <p className={styles.error}>{errors.dateRange}</p>}
       <Button variant={variants.add} onClick={handleSaveChanges}>
         Save Changes
