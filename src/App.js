@@ -1,16 +1,12 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import ViewMedicalCasePage from "./pages/view/ViewMedicalCasePage";
-import ViewDiagnosesPage from "./pages/view/ViewDiagnosesPage";
-import ViewDoctorsPage from "./pages/view/ViewDoctorsPage";
-import ViewInsurancePage from "./pages/view/ViewInsurancePage";
-import ViewOperationsPage from "./pages/view/ViewOperationsPage";
-import ViewResearchPage from "./pages/view/ViewResearchPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MainPage from "pages/MainPage";
+import ViewMedicalCasePage from "pages/view/ViewMedicalCasePage";
+import ViewDiagnosesPage from "pages/view/ViewDiagnosesPage";
+import ViewDoctorsPage from "pages/view/ViewDoctorsPage";
+import ViewInsurancePage from "pages/view/ViewInsurancePage";
+import ViewOperationsPage from "pages/view/ViewOperationsPage";
+import ViewResearchPage from "pages/view/ViewResearchPage";
 
 function App() {
   return (

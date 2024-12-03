@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Table from "../../../common/tables/medical-case-table/Table"; // Updated to use diagnoses-table
-import Button, { variants } from "../../../common/button/Button";
+import Table from "components/common/tables/medical-case-table/Table"; // Updated to use diagnoses-table
+import Button, { variants } from "components/common/button/Button";
 import { useNavigate } from "react-router-dom";
-import DiagnosesApi from "../../../../api/diagnoses/DiagnosesAPI";
+import DiagnosesApi from "api/diagnoses/DiagnosesAPI";
 const ViewDiagnoses = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

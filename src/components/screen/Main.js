@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-// import Button, { variants } from "../common/button/Button";
+import Button, { variants } from "components/common/button/Button";
 import styles from "./Main.module.css";
 
 const mainNavigation = [
@@ -22,7 +22,7 @@ const Main = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        {/* {mainNavigation.map((navItem, index) => (
+        {mainNavigation.map((navItem, index) => (
           <Button
             key={index}
             variant={variants.nav}
@@ -30,7 +30,7 @@ const Main = () => {
           >
             {navItem.name}
           </Button>
-        ))} */}
+        ))}
       </div>
     </div>
   );

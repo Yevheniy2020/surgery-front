@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Button, { variants } from "../../../common/button/Button";
-import Table from "../../../common/tables/medical-case-table/Table";
-import MedicalCaseApi from "../../../../api/medical-case/MedicalCaseAPI";
+import Button, { variants } from "components/common/button/Button";
+import Table from "components/common/tables/medical-case-table/Table";
+import MedicalCaseApi from "api/medical-case/MedicalCaseAPI";
 const ViewMedicalCase = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

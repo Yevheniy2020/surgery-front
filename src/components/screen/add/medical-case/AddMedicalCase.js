@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "../../../common/button/Button";
-import Input from "../../../common/input/Input";
+import Button from "components/common/button/Button";
+import Input from "components/common/input/Input";
 import styles from "./AddMedicalCase.module.css";
-import { variants } from "../../../common/button/Button";
-import DateTimePicker from "../../../common/date-time-picker/DateTimePicker";
+import { variants } from "components/common/button/Button";
+import DateTimePicker from "components/common/date-time-picker/DateTimePicker";
 import { useState } from "react";
-import MedicalCaseApi from "../../../../api/medical-case/MedicalCaseAPI";
+import MedicalCaseApi from "api/medical-case/MedicalCaseAPI";
 
 const AddMedicalCase = () => {
   const [caseStartDate, setCaseStartDate] = useState("");

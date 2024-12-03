@@ -1,4 +1,4 @@
-import AddMedicalCase from "../../../components/screen/add/medical-case/AddMedicalCase";
+import AddMedicalCase from "components/screen/add/medical-case/AddMedicalCase";
 
 const AddMedicalCasePage = () => {
   return <AddMedicalCase />;
