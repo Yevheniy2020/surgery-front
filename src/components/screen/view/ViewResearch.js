@@ -34,8 +34,20 @@ const ViewResearch = () => {
   const fetchResearchData = async () => {
     setLoading(true);
     try {
-      const fetchedData = await ResearchApi.getAllResearch(); // Updated to fetch research data
-      setData(fetchedData);
+      const fetchedData = await ResearchApi.getAllResearch();
+      fetchedData.forEach((element) => {
+        if (element.researchesInCases.length !== 0) {
+          element.researchesInCasesId = element.researchesInCases
+            .map((item) => item.caseId)
+            .join(", ");
+        } else {
+          element.researchesInCasesId = null;
+        }
+      });
+      const filteredData = fetchedData.map(
+        ({ researchesInCases, ...rest }) => rest
+      );
+      setData(filteredData);
       console.log(fetchedData);
     } catch (error) {
       console.error("Error fetching research data:", error);

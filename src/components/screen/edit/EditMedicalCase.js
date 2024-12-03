@@ -13,7 +13,7 @@ const EditMedicalCase = () => {
   const [caseEndDate, setCaseEndDate] = useState("");
   const [patientId, setPatientId] = useState("");
   const [insuranceId, setInsuranceId] = useState("");
-  const [diagnosisId, setDiagnosisId] = useState("");
+  const [diagnoseId, setDiagnoseId] = useState(""); // Renamed from diagnosisId to diagnoseId
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -26,7 +26,7 @@ const EditMedicalCase = () => {
         setCaseEndDate(fetchedData.caseEndDate);
         setPatientId(fetchedData.patientId);
         setInsuranceId(fetchedData.insuranceId);
-        setDiagnosisId(fetchedData.diagnosisId);
+        setDiagnoseId(fetchedData.diagnoseId); // Updated to setDiagnoseId
       } catch (error) {
         console.error("Error fetching medical case:", error);
       }
@@ -54,7 +54,7 @@ const EditMedicalCase = () => {
     if (!caseEndDate) newErrors.caseEndDate = "Case End Date is required.";
     if (!patientId) newErrors.patientId = "Patient ID is required.";
     if (!insuranceId) newErrors.insuranceId = "Insurance ID is required.";
-    if (!diagnosisId) newErrors.diagnosisId = "Diagnosis ID is required.";
+    if (!diagnoseId) newErrors.diagnoseId = "Diagnosis ID is required."; // Updated to diagnoseId
     if (caseEndDate < caseStartDate)
       newErrors.dateRange = "End date must be after start date.";
 
@@ -70,7 +70,7 @@ const EditMedicalCase = () => {
         caseEndDate,
         patientId,
         insuranceId,
-        diagnosisId,
+        diagnoseId, // Updated to diagnoseId
       };
       try {
         const response = await MedicalCaseApi.updateMedicalCase(updatedData);
@@ -122,12 +122,12 @@ const EditMedicalCase = () => {
       )}
       <Input
         label="Diagnosis ID"
-        value={diagnosisId}
-        onChange={handleInputChange(setDiagnosisId)}
+        value={diagnoseId} // Updated to diagnoseId
+        onChange={handleInputChange(setDiagnoseId)} // Updated to setDiagnoseId
         type="number"
       />
-      {errors.diagnosisId && (
-        <p className={styles.error}>{errors.diagnosisId}</p>
+      {errors.diagnoseId && ( // Updated to diagnoseId
+        <p className={styles.error}>{errors.diagnoseId}</p>
       )}
       {errors.dateRange && <p className={styles.error}>{errors.dateRange}</p>}
       <Button variant={variants.add} onClick={handleSaveChanges}>

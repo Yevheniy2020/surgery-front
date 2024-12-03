@@ -35,7 +35,19 @@ const ViewOperations = () => {
     setLoading(true);
     try {
       const fetchedData = await OperationsApi.getAllOperations();
-      setData(fetchedData);
+      fetchedData.forEach((element) => {
+        if (element.caseOperations.length !== 0) {
+          element.caseOperationsdId = element.caseOperations
+            .map((item) => item.caseId)
+            .join(", ");
+        } else {
+          element.caseOperationsId = null;
+        }
+      });
+      const filteredData = fetchedData.map(
+        ({ caseOperations, ...rest }) => rest
+      );
+      setData(filteredData);
       console.log(fetchedData);
     } catch (error) {
       console.error("Error fetching operations data:", error);
