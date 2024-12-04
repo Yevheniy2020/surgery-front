@@ -35,6 +35,7 @@ const ViewInsurance = () => {
     setLoading(true);
     try {
       const fetchedData = await InsuranceApi.getAllInsurancePlans();
+
       fetchedData.forEach((element) => {
         if (element.medicalCases.length !== 0) {
           element.medicalCasesId = element.medicalCases
@@ -56,7 +57,9 @@ const ViewInsurance = () => {
   return (
     <div>
       {loading ? (
-        <div>Loading...</div>
+        <div className="infinite-spinner">
+          <img src="/infinite-spinner.svg" alt="Loading..." />
+        </div>
       ) : (
         <>
           <Table

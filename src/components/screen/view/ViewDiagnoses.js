@@ -57,7 +57,9 @@ const ViewDiagnoses = () => {
   return (
     <div>
       {loading ? (
-        <div>Loading...</div>
+        <div className="infinite-spinner">
+          <img src="/infinite-spinner.svg" alt="Loading..." />
+        </div>
       ) : (
         <>
           <Table
