@@ -4,7 +4,7 @@ import Table from "../../table/Table";
 import Button, { variants } from "../../button/Button";
 import { useNavigate } from "react-router-dom";
 
-const ViewDoctors = () => {
+const ViewBusyDoctors = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const ViewDoctors = () => {
   const fetchDoctorsData = async () => {
     setLoading(true);
     try {
-      const fetchedData = await DoctorApi.getAllDoctors();
+      const fetchedData = await DoctorApi.getBusyDoctors();
       fetchedData.forEach((element) => {
         if (element.doctorsInCaseOperations.length !== 0) {
           element.doctorsInCaseOperationsId = element.doctorsInCaseOperations
@@ -81,18 +81,6 @@ const ViewDoctors = () => {
             <Button onClick={() => handleRedirect("/add/doctors")}>
               Add New Doctor
             </Button>
-            <Button
-              variant={variants.view}
-              onClick={() => handleRedirect("/view/busy-doctors")}
-            >
-              Busy Doctors
-            </Button>
-            <Button
-              variant={variants.view}
-              onClick={() => handleRedirect("/view/best-doctors")}
-            >
-              Best Doctors
-            </Button>
             <Button variant={variants.nav} onClick={() => handleRedirect("/")}>
               To Main
             </Button>
@@ -103,4 +91,4 @@ const ViewDoctors = () => {
   );
 };
 
-export default ViewDoctors;
+export default ViewBusyDoctors;

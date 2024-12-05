@@ -23,7 +23,9 @@ import EditDoctor from "./components/screen/edit/EditDoctor";
 import EditInsurance from "./components/screen/edit/EditInsurance";
 import EditOperations from "./components/screen/edit/EditOperations";
 import EditResearch from "./components/screen/edit/EditResearch";
-
+// --
+import ViewBusyDoctors from "./components/screen/view/ViewBusyDoctors";
+import ViewBestDoctors from "./components/screen/view/ViewBestDoctors";
 function App() {
   return (
     <Router>
@@ -36,6 +38,9 @@ function App() {
         <Route path="/view/insurance" element={<ViewInsurance />} />
         <Route path="/view/operations" element={<ViewOperations />} />
         <Route path="/view/research" element={<ViewResearch />} />
+        {/* -- */}
+        <Route path="/view/best-doctors" element={<ViewBestDoctors />} />
+        <Route path="/view/busy-doctors" element={<ViewBusyDoctors />} />
         {/* ADD */}
         <Route path="/add/medical-cases" element={<AddMedicalCase />} />
         <Route path="/add/diagnoses" element={<AddDiagnosis />} />

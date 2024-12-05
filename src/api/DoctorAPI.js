@@ -6,6 +6,16 @@ class DoctorApi {
     return data;
   }
 
+  async getBusyDoctors() {
+    const { data } = await client.get("/Doctor/GetBusyDoctors", {});
+    return data;
+  }
+
+  async getBestDoctors() {
+    const { data } = await client.get("/Doctor/GetBestDoctors", {});
+    return data;
+  }
+
   async getDoctorById(id) {
     const { data } = await client.get("/Doctor/GetById", {
       params: { id },
@@ -31,5 +41,21 @@ class DoctorApi {
     });
     return data;
   }
+
+  // async assignOperation(doctorId, operationDetails) {
+  //   const { data } = await client.post("/Doctor/AssignOperation", {
+  //     doctorId,
+  //     ...operationDetails,
+  //   });
+  //   return data;
+  // }
+
+  // async assignMedicalCase(doctorId, medicalCaseDetails) {
+  //   const { data } = await client.post("/Doctor/AssignMedicalCase", {
+  //     doctorId,
+  //     ...medicalCaseDetails,
+  //   });
+  //   return data;
+  // }
 }
 export default new DoctorApi();
