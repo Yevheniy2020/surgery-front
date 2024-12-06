@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Button, { variants } from "../button/Button";
 import styles from "./Main.module.css";
@@ -14,7 +13,6 @@ const mainNavigation = [
 ];
 
 const Main = () => {
-  const navigate = useNavigate();
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
@@ -25,7 +23,7 @@ const Main = () => {
   }, []);
 
   const handleRedirect = (route) => {
-    navigate(route);
+    window.location.href = route;
   };
 
   return (
