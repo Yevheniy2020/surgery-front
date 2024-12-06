@@ -9,6 +9,8 @@ import ViewDoctors from "./components/screen/view/ViewDoctors";
 import ViewInsurance from "./components/screen/view/ViewInsurance";
 import ViewOperations from "./components/screen/view/ViewOperations";
 import ViewResearch from "./components/screen/view/ViewResearch";
+import ViewBusyDoctors from "./components/screen/view/ViewBusyDoctors";
+import ViewBestDoctors from "./components/screen/view/ViewBestDoctors";
 // --- ADD
 import AddMedicalCase from "./components/screen/add/AddMedicalCase";
 import AddDiagnosis from "./components/screen/add/AddDiagnosis";
@@ -16,16 +18,17 @@ import AddDoctor from "./components/screen/add/AddDoctor";
 import AddInsurance from "./components/screen/add/AddInsurance";
 import AddOperations from "./components/screen/add/AddOperations";
 import AddResearch from "./components/screen/add/AddResearch";
-// --- Edit
+// --- EDIT
 import EditMedicalCase from "./components/screen/edit/EditMedicalCase";
 import EditDiagnosis from "./components/screen/edit/EditDiagnosis";
 import EditDoctor from "./components/screen/edit/EditDoctor";
 import EditInsurance from "./components/screen/edit/EditInsurance";
 import EditOperations from "./components/screen/edit/EditOperations";
 import EditResearch from "./components/screen/edit/EditResearch";
-// --
-import ViewBusyDoctors from "./components/screen/view/ViewBusyDoctors";
-import ViewBestDoctors from "./components/screen/view/ViewBestDoctors";
+// --- ASSIGN
+import AssignMedicalCase from "./components/screen/assign/AssignMedicalCase";
+import AssignOperation from "./components/screen/assign/AssignOperation";
+
 function App() {
   return (
     <Router>
@@ -38,7 +41,6 @@ function App() {
         <Route path="/view/insurance" element={<ViewInsurance />} />
         <Route path="/view/operations" element={<ViewOperations />} />
         <Route path="/view/research" element={<ViewResearch />} />
-        {/* -- */}
         <Route path="/view/best-doctors" element={<ViewBestDoctors />} />
         <Route path="/view/busy-doctors" element={<ViewBusyDoctors />} />
         {/* ADD */}
@@ -55,6 +57,9 @@ function App() {
         <Route path="/edit/insurance/:id" element={<EditInsurance />} />
         <Route path="/edit/operations/:id" element={<EditOperations />} />
         <Route path="/edit/research/:id" element={<EditResearch />} />
+        {/* ASSIGN */}
+        <Route path="assign/medical-case/:id" element={<AssignMedicalCase />} />
+        <Route path="/assign/operation/:id" element={<AssignOperation />} />
       </Routes>
     </Router>
   );

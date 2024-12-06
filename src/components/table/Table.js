@@ -2,7 +2,14 @@ import React from "react";
 import { variants } from "../button/Button";
 import styles from "./Table.module.css";
 import Button from "../button/Button";
-const Table = ({ data, pathEdit, handleDelete, handleEdit }) => {
+const Table = ({
+  data,
+  handleDelete,
+  handleEdit,
+  isAssigns = false,
+  handleAssignOperation,
+  handleAssignMedicalCase,
+}) => {
   return (
     <table className={styles.table}>
       <thead>
@@ -32,6 +39,22 @@ const Table = ({ data, pathEdit, handleDelete, handleEdit }) => {
                 >
                   Delete
                 </Button>
+                {isAssigns && (
+                  <>
+                    <Button
+                      variant={variants.view}
+                      onClick={() => handleAssignMedicalCase(item)}
+                    >
+                      Assign Medical Case
+                    </Button>
+                    <Button
+                      variant={variants.view}
+                      onClick={() => handleAssignOperation(item)}
+                    >
+                      Assign Operation
+                    </Button>
+                  </>
+                )}
               </div>
             </td>
           </tr>

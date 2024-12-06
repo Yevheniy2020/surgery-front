@@ -10,6 +10,7 @@ import DiagnosesApi from "../../../api/DiagnosesAPI";
 const ViewMedicalCase = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState("desc"); // State to manage sort order
   const navigate = useNavigate();
 
   const handleEdit = (id) => {
@@ -64,6 +65,7 @@ const ViewMedicalCase = () => {
       const filteredData = transformedData.map(
         ({ patientId, insuranceId, diagnoseId, ...rest }) => rest
       );
+
       setData(filteredData);
       console.log(filteredData);
     } catch (error) {
@@ -76,7 +78,7 @@ const ViewMedicalCase = () => {
   const fetchDiagnoseById = async (id) => {
     try {
       const diagnoseData = await DiagnosesApi.getDiagnosisById(id);
-      return diagnoseData.diagnoseDescription || ""; // Assuming diagnose data has a property 'diagnoseName'
+      return diagnoseData.diagnoseDescription || "";
     } catch (error) {
       console.error("Error fetching diagnose data:", error);
     }
@@ -85,7 +87,7 @@ const ViewMedicalCase = () => {
   const fetchInsuranceById = async (id) => {
     try {
       const insuranceData = await InsuranceApi.getInsuranceById(id);
-      return insuranceData.insuranceName || ""; // Assuming insurance data has a property 'insuranceName'
+      return insuranceData.insuranceName || "";
     } catch (error) {
       console.error("Error fetching insurance data:", error);
     }
@@ -106,6 +108,43 @@ const ViewMedicalCase = () => {
     }
   };
 
+  const handleSort = () => {
+    console.log([...data]);
+    const sortedData = [...data].sort((a, b) => {
+      const dateA = new Date(
+        a.caseStartDate.split(", ")[0].split(".").reverse().join("-") +
+          "T" +
+          a.caseStartDate.split(", ")[1]
+      );
+      const dateB = new Date(
+        b.caseStartDate.split(", ")[0].split(".").reverse().join("-") +
+          "T" +
+          b.caseStartDate.split(", ")[1]
+      );
+      const endDateA = new Date(
+        a.caseEndDate
+          ? a.caseEndDate.split(", ")[0].split(".").reverse().join("-") +
+            "T" +
+            a.caseEndDate.split(", ")[1]
+          : null
+      );
+      const endDateB = new Date(
+        b.caseEndDate
+          ? b.caseEndDate.split(", ")[0].split(".").reverse().join("-") +
+            "T" +
+            b.caseEndDate.split(", ")[1]
+          : null
+      );
+
+      if (sortOrder === "asc") {
+        return dateA - dateB || endDateA - endDateB;
+      } else {
+        return dateB - dateA || endDateB - endDateA;
+      }
+    });
+    setData(sortedData);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc"); // Toggle sort order
+  };
   return (
     <div>
       {loading ? (
@@ -125,6 +164,9 @@ const ViewMedicalCase = () => {
             </Button>
             <Button variant={variants.nav} onClick={() => handleRedirect("/")}>
               To Main
+            </Button>
+            <Button variant={variants.view} onClick={handleSort}>
+              Sort by Date {sortOrder === "asc" ? "Descending" : "Ascending"}
             </Button>
           </div>
         </>

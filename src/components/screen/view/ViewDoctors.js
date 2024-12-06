@@ -21,6 +21,14 @@ const ViewDoctors = () => {
     navigate(`/edit/doctors/${id.doctorId}`);
   };
 
+  const handleAssignOperation = (id) => {
+    navigate(`/assign/operation/${id.doctorId}`);
+  };
+
+  const handleAssignMedicalCase = (id) => {
+    navigate(`/assign/medical-case/${id.doctorId}`);
+  };
+
   const handleDelete = async (id) => {
     try {
       await DoctorApi.deleteDoctor(id.doctorId);
@@ -76,19 +84,22 @@ const ViewDoctors = () => {
             data={data}
             handleDelete={handleDelete}
             handleEdit={handleEdit}
+            isAssigns={true}
+            handleAssignOperation={handleAssignOperation}
+            handleAssignMedicalCase={handleAssignMedicalCase}
           />
           <div className="buttons-bottom">
             <Button onClick={() => handleRedirect("/add/doctors")}>
               Add New Doctor
             </Button>
             <Button
-              variant={variants.view}
+              variant={variants.nav}
               onClick={() => handleRedirect("/view/busy-doctors")}
             >
               Busy Doctors
             </Button>
             <Button
-              variant={variants.view}
+              variant={variants.nav}
               onClick={() => handleRedirect("/view/best-doctors")}
             >
               Best Doctors

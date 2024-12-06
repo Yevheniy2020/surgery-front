@@ -61,20 +61,32 @@ class DoctorApi {
     return data;
   }
 
-  // async assignOperation(doctorId, operationDetails) {
-  //   const { data } = await client.post("/Doctor/AssignOperation", {
-  //     doctorId,
-  //     ...operationDetails,
-  //   });
-  //   return data;
-  // }
+  async assignOperation(doctorId, operationDetails) {
+    const { data } = await client.post(
+      "/Doctor/AssignOperation",
+      {
+        doctorId,
+        ...operationDetails,
+      },
+      {
+        headers: { Authorization: `Bearer ${this.token}` },
+      }
+    );
+    return data;
+  }
 
-  // async assignMedicalCase(doctorId, medicalCaseDetails) {
-  //   const { data } = await client.post("/Doctor/AssignMedicalCase", {
-  //     doctorId,
-  //     ...medicalCaseDetails,
-  //   });
-  //   return data;
-  // }
+  async assignMedicalCase(doctorId, medicalCaseDetails) {
+    const { data } = await client.post(
+      "/Doctor/AssignMedicalCase",
+      {
+        doctorId,
+        ...medicalCaseDetails,
+      },
+      {
+        headers: { Authorization: `Bearer ${this.token}` },
+      }
+    );
+    return data;
+  }
 }
 export default new DoctorApi();
