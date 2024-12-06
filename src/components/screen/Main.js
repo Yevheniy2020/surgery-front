@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button, { variants } from "../button/Button";
 import styles from "./Main.module.css";
+import AuthForm from "./Auth"; // Import the AuthForm component
 
 const mainNavigation = [
   { name: "Medical Cases", route: "/view/medical-cases" },
@@ -14,6 +15,14 @@ const mainNavigation = [
 
 const Main = () => {
   const navigate = useNavigate();
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      setIsAuth(true);
+    }
+  }, []);
 
   const handleRedirect = (route) => {
     navigate(route);
@@ -21,17 +30,20 @@ const Main = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
-        {mainNavigation.map((navItem, index) => (
-          <Button
-            key={index}
-            variant={variants.nav}
-            onClick={() => handleRedirect(navItem.route)}
-          >
-            {navItem.name}
-          </Button>
-        ))}
-      </div>
+      {!isAuth ? <AuthForm setIsAuth={setIsAuth} /> : null}
+      {isAuth && (
+        <div className={styles.container}>
+          {mainNavigation.map((navItem, index) => (
+            <Button
+              key={index}
+              variant={variants.nav}
+              onClick={() => handleRedirect(navItem.route)}
+            >
+              {navItem.name}
+            </Button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

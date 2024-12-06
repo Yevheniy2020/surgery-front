@@ -1,36 +1,54 @@
 import { client } from "./instance";
 
 class DoctorApi {
+  constructor() {
+    this.token = localStorage.getItem("accessToken");
+  }
+
+  setToken(token) {
+    this.token = token;
+  }
+
   async getAllDoctors() {
-    const { data } = await client.get("/Doctor/GetAll", {});
+    const { data } = await client.get("/Doctor/GetAll", {
+      headers: { Authorization: `Bearer ${this.token}` },
+    });
     return data;
   }
 
   async getBusyDoctors() {
-    const { data } = await client.get("/Doctor/GetBusyDoctors", {});
+    const { data } = await client.get("/Doctor/GetBusyDoctors", {
+      headers: { Authorization: `Bearer ${this.token}` },
+    });
     return data;
   }
 
   async getBestDoctors() {
-    const { data } = await client.get("/Doctor/GetBestDoctors", {});
+    const { data } = await client.get("/Doctor/GetBestDoctors", {
+      headers: { Authorization: `Bearer ${this.token}` },
+    });
     return data;
   }
 
   async getDoctorById(id) {
     const { data } = await client.get("/Doctor/GetById", {
       params: { id },
+      headers: { Authorization: `Bearer ${this.token}` },
     });
     return data;
   }
 
   async addDoctor(doctor) {
-    const { data } = await client.post("/Doctor/add", doctor);
+    const { data } = await client.post("/Doctor/add", doctor, {
+      headers: { Authorization: `Bearer ${this.token}` },
+    });
     return data;
   }
 
   async deleteDoctor(id) {
     const { data } = await client.delete("/Doctor/Delete", {
       params: { id },
+      headers: { Authorization: `Bearer ${this.token}` },
     });
     return data;
   }
@@ -38,6 +56,7 @@ class DoctorApi {
   async updateDoctor(doctor) {
     const { data } = await client.put("/Doctor/Update", doctor, {
       params: { id: doctor.id },
+      headers: { Authorization: `Bearer ${this.token}` },
     });
     return data;
   }

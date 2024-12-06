@@ -17,3 +17,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.auth-container {
+  max-width: 360px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
