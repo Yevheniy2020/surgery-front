@@ -2,7 +2,7 @@ import { client } from "./instance";
 
 class ResearchApi {
   constructor() {
-    this.token = localStorage.getItem("accessToken");
+    this.token = localStorage.getItem("site");
   }
 
   setToken(token) {

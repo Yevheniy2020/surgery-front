@@ -1,56 +1,58 @@
 import React, { useEffect, useState } from "react";
-import ResearchApi from "../../../api/ResearchAPI"; // Updated to use ResearchAPI
+import CaseOperationsApi from "../../../api/CaseOperationsAPI"; // Updated to use OperationsAPI
 import Table from "../../table/Table";
 import Button, { variants } from "../../button/Button";
 import { useNavigate } from "react-router-dom";
 
-const ViewResearch = () => {
+const ViewCaseOperations = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchResearchData();
+    fetchCaseOperationsData();
   }, []);
-
-  const handleDelete = async (id) => {
-    try {
-      await ResearchApi.deleteResearch(id.researchId);
-      console.log(`Deleted medical case with id: ${id.researchId}`);
-      window.location.reload();
-    } catch (error) {
-      console.error("Error deleting medical case:", error);
-    }
-  };
-
-  const handleEdit = (id) => {
-    navigate(`/edit/research/${id.researchId}`);
-  };
 
   const handleRedirect = (path) => {
     navigate(`${path}`);
   };
 
-  const fetchResearchData = async () => {
+  const handleEdit = (id) => {
+    navigate(`/edit/case-operations/${id.caseOperationId}`);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await CaseOperationsApi.deleteCaseOperation(id.caseOperationId);
+      console.log(`Deleted case operation with id: ${id.caseOperationId}`);
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting case operation:", error);
+    }
+  };
+
+  const fetchCaseOperationsData = async () => {
     setLoading(true);
     try {
-      const fetchedData = await ResearchApi.getAllResearch();
+      const fetchedData = await CaseOperationsApi.getAllCaseOperations();
+      console.log(fetchedData);
+
       fetchedData.forEach((element) => {
-        if (element.researchesInCases.length !== 0) {
-          element.researchesInCasesId = element.researchesInCases
-            .map((item) => item.caseId)
+        if (element.doctorsInCaseOperations.length !== 0) {
+          element.doctorsInCaseOperationsId = element.doctorsInCaseOperations
+            .map((item) => item.caseOperationId)
             .join(", ");
         } else {
-          element.researchesInCasesId = null;
+          element.doctorsInCaseOperationsId = null;
         }
       });
       const filteredData = fetchedData.map(
-        ({ researchesInCases, ...rest }) => rest
+        ({ doctorsInCaseOperations, ...rest }) => rest
       );
       setData(filteredData);
       console.log(fetchedData);
     } catch (error) {
-      console.error("Error fetching research data:", error);
+      console.error("Error fetching case operations data:", error);
     } finally {
       setLoading(false);
     }
@@ -70,8 +72,8 @@ const ViewResearch = () => {
             handleEdit={handleEdit}
           />
           <div className="buttons-bottom">
-            <Button onClick={() => handleRedirect("/add/research")}>
-              Add New Research
+            <Button onClick={() => handleRedirect("/add/case-operations")}>
+              Add New Case Operation
             </Button>
             <Button variant={variants.nav} onClick={() => handleRedirect("/")}>
               To Main
@@ -83,4 +85,4 @@ const ViewResearch = () => {
   );
 };
 
-export default ViewResearch;
+export default ViewCaseOperations;
