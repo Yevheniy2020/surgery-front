@@ -6,6 +6,8 @@ import Login from "./utils/Login";
 import PrivateRoute from "./utils/PrivateRoutes";
 // --- PROVIDERS
 import AuthProvider from "./utils/AuthProvider";
+// --- MIDDLEWARE
+import { useTokenCheck } from "./middleware"; // Import the middleware
 // --- VIEW
 import MainPage from "./components/screen/Main";
 import ViewMedicalCase from "./components/screen/view/ViewMedicalCase";
@@ -37,61 +39,71 @@ import EditCaseOperations from "./components/screen/edit/EditCaseOperations";
 import AssignMedicalCase from "./components/screen/assign/AssignMedicalCase";
 import AssignOperation from "./components/screen/assign/AssignOperation";
 
+const TokenCheckWrapper = ({ children }) => {
+  useTokenCheck(); // Check token expiration and handle redirection
+  return children;
+};
+
 function App() {
   return (
     <Router>
       <AuthProvider>
-        <Routes>
-          {/* LOGIN */}
-          <Route path="/login" element={<Login />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/" element={<MainPage />} />
-            {/* VIEW */}
-            <Route path="/view/medical-cases" element={<ViewMedicalCase />} />
-            <Route path="/view/diagnoses" element={<ViewDiagnoses />} />
-            <Route path="/view/doctors" element={<ViewDoctors />} />
-            <Route path="/view/insurance" element={<ViewInsurance />} />
-            <Route path="/view/operations" element={<ViewOperations />} />
-            <Route path="/view/patients" element={<ViewPatients />} />
-            <Route path="/view/best-doctors" element={<ViewBestDoctors />} />
-            <Route path="/view/busy-doctors" element={<ViewBusyDoctors />} />
-            <Route
-              path="/view/case-operations"
-              element={<ViewCaseOperations />}
-            />
-            {/* ADD */}
-            <Route path="/add/medical-cases" element={<AddMedicalCase />} />
-            <Route path="/add/diagnoses" element={<AddDiagnosis />} />
-            <Route path="/add/doctors" element={<AddDoctor />} />
-            <Route path="/add/insurance" element={<AddInsurance />} />
-            <Route path="/add/operations" element={<AddOperations />} />
-            <Route path="/add/patient" element={<AddPatient />} />
-            <Route
-              path="/add/case-operations"
-              element={<AddCaseOperations />}
-            />
-            {/* EDIT */}
-            <Route
-              path="/edit/medical-cases/:id"
-              element={<EditMedicalCase />}
-            />
-            <Route path="/edit/diagnoses/:id" element={<EditDiagnosis />} />
-            <Route path="/edit/doctors/:id" element={<EditDoctor />} />
-            <Route path="/edit/insurance/:id" element={<EditInsurance />} />
-            <Route path="/edit/operations/:id" element={<EditOperations />} />
-            <Route path="/edit/patient/:id" element={<EditPatient />} />
-            <Route
-              path="/edit/case-operations/:id"
-              element={<EditCaseOperations />}
-            />
-            {/* ASSIGN */}
-            <Route
-              path="assign/medical-case/:id"
-              element={<AssignMedicalCase />}
-            />
-            <Route path="/assign/operation/:id" element={<AssignOperation />} />
-          </Route>
-        </Routes>
+        <TokenCheckWrapper>
+          <Routes>
+            {/* LOGIN */}
+            <Route path="/login" element={<Login />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/" element={<MainPage />} />
+              {/* VIEW */}
+              <Route path="/view/medical-cases" element={<ViewMedicalCase />} />
+              <Route path="/view/diagnoses" element={<ViewDiagnoses />} />
+              <Route path="/view/doctors" element={<ViewDoctors />} />
+              <Route path="/view/insurance" element={<ViewInsurance />} />
+              <Route path="/view/operations" element={<ViewOperations />} />
+              <Route path="/view/patients" element={<ViewPatients />} />
+              <Route path="/view/best-doctors" element={<ViewBestDoctors />} />
+              <Route path="/view/busy-doctors" element={<ViewBusyDoctors />} />
+              <Route
+                path="/view/case-operations"
+                element={<ViewCaseOperations />}
+              />
+              {/* ADD */}
+              <Route path="/add/medical-cases" element={<AddMedicalCase />} />
+              <Route path="/add/diagnoses" element={<AddDiagnosis />} />
+              <Route path="/add/doctors" element={<AddDoctor />} />
+              <Route path="/add/insurance" element={<AddInsurance />} />
+              <Route path="/add/operations" element={<AddOperations />} />
+              <Route path="/add/patient" element={<AddPatient />} />
+              <Route
+                path="/add/case-operations"
+                element={<AddCaseOperations />}
+              />
+              {/* EDIT */}
+              <Route
+                path="/edit/medical-cases/:id"
+                element={<EditMedicalCase />}
+              />
+              <Route path="/edit/diagnoses/:id" element={<EditDiagnosis />} />
+              <Route path="/edit/doctors/:id" element={<EditDoctor />} />
+              <Route path="/edit/insurance/:id" element={<EditInsurance />} />
+              <Route path="/edit/operations/:id" element={<EditOperations />} />
+              <Route path="/edit/patient/:id" element={<EditPatient />} />
+              <Route
+                path="/edit/case-operations/:id"
+                element={<EditCaseOperations />}
+              />
+              {/* ASSIGN */}
+              <Route
+                path="assign/medical-case/:id"
+                element={<AssignMedicalCase />}
+              />
+              <Route
+                path="/assign/operation/:id"
+                element={<AssignOperation />}
+              />
+            </Route>
+          </Routes>
+        </TokenCheckWrapper>
       </AuthProvider>
     </Router>
   );
